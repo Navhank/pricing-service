@@ -4,3 +4,4 @@ pymongo==3.11.2
 python-dotenv==0.15.0
 requests==2.25.1
 passlib==1.7.4
+gunicorn
