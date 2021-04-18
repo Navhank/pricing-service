@@ -12,7 +12,7 @@ from views.users import user_blueprint
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = os.urandom(64)
+    app.secret_key = os.environ.get("SECRET_KEY") # os.urandom(64)
     load_dotenv()
     app.config.update(
         ADMIN=os.environ.get("ADMIN")
