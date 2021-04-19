@@ -9,7 +9,42 @@
 </head>
 <body>
     <div class="content container mt-2">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="/">Pricing service</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a href="{{ url_for('stores.index') }}" class="nav-item nav-link">Stores</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('alerts.index') }}" class="nav-item nav-link">Alerts</a>
+                </li>
+                    {% if session["email"] == None %}
+                        <li class="nav-item">
+                            <a href="{{ url_for('users.login_user') }}" class="nav-item nav-link">Log in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('users.register_user') }}" class="nav-item nav-link">Sign up</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{{ url_for('users.logout') }}" class="nav-item nav-link">Log out</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                {% if session["email"] != None %}
+                    <span class="navbar-text">
+                        Logged as: {{ session["email"] }}
+                    </span>
+                {% endif %}
+            </div>
+            </div>
+        </nav>
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
             <a href="/" class="navbar-brand">Pricing Service</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +62,7 @@
                     {% endif %}
                 </div>
             </div>
-        </nav>
+        </nav> -->
 
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
