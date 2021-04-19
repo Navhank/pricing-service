@@ -12,7 +12,7 @@ def register_user():
         try:
             User.register_user(email, password)
             session["email"] = email
-            return email
+            return render_template("home.html")
         except UserErrors.UserError as e:
             return e.message
 
@@ -27,7 +27,7 @@ def login_user():
         try:
             if User.is_login_valid(email, password):
                 session["email"] = email
-                return email
+                return render_template("home.html")
         except UserErrors.UserError as e:
             return e.message
 
